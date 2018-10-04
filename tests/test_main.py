@@ -49,9 +49,15 @@ class MainTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             main._convert_raw_input_to_dict('Lions 3, Lions 8')
 
-    def test_raw_input_data_formatting_case_insensitivity(self):
-        with self.assertRaises(ValueError):
-            main._convert_raw_input_to_dict('lions 3, Lions 8')
+    def test_individual_score_team_name_no_spaces(self):
+        expected_res = 'TeamA', 4
+        res = main._get_individual_score('TeamA 4')
+        self.assertEqual(res, expected_res)
+
+    def test_individual_score_team_name_has_spaces(self):
+        expected_res = 'Team A', 4
+        res = main._get_individual_score('Team A 4')
+        self.assertEqual(res, expected_res)
 
     def test_formatted_table_simple(self):
         table = LeagueTable()

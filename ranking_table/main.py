@@ -23,8 +23,7 @@ def main(file):
     for row in input_data:
         league_table.add_result(row)
 
-    result_table = league_table.get_current_standings()
-    formatted_results = _get_formatted_league_table_results(result_table)
+    formatted_results = _get_formatted_league_table_results(league_table)
     for line in formatted_results:
         print(line)
 
@@ -81,11 +80,11 @@ def _convert_raw_input_to_dict(raw_input: str) -> Dict:
 
 
 def _get_individual_score(string_input: str) -> Tuple[str, int]:
-    data = string_input.strip().split(' ')
+    data = string_input.strip().rsplit(' ', maxsplit=1)
     if not len(data) == 2:
         raise ValueError(f'Individual score format invalid')
 
-    team_name = data[0].title()
+    team_name = data[0]
 
     if not data[1].isdigit():
         raise ValueError(f'Only valid, integer scores allowed')
