@@ -45,14 +45,6 @@ class MainTestCase(unittest.TestCase):
         res = main._convert_raw_input_to_dict(input_data)
         self.assertDictEqual(res, expected_result)
 
-    def test_raw_input_data_formatting_invalid_team_separation(self):
-        with self.assertRaises(ValueError):
-            main._convert_raw_input_to_dict('Lions 3; Snakes 8')
-
-    def test_raw_input_data_formatting_invalid_team_number(self):
-        with self.assertRaises(ValueError):
-            main._convert_raw_input_to_dict('Lions 3, Snakes 8, Bob 1')
-
     def test_raw_input_data_formatting_duplicated_team_name(self):
         with self.assertRaises(ValueError):
             main._convert_raw_input_to_dict('Lions 3, Lions 8')
@@ -60,18 +52,6 @@ class MainTestCase(unittest.TestCase):
     def test_raw_input_data_formatting_case_insensitivity(self):
         with self.assertRaises(ValueError):
             main._convert_raw_input_to_dict('lions 3, Lions 8')
-
-    def test_raw_input_data_formatting_invalid_score_separation(self):
-        with self.assertRaises(ValueError):
-            main._get_individual_score('Snakes8')
-
-    def test_raw_input_data_formatting_invalid_score_float(self):
-        with self.assertRaises(ValueError):
-            main._get_individual_score('Snakes 8.4')
-
-    def test_raw_input_data_formatting_invalid_score_non_numeric(self):
-        with self.assertRaises(ValueError):
-            main._get_individual_score('Snakes abc')
 
     def test_formatted_table_simple(self):
         table = LeagueTable()
