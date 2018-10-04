@@ -33,8 +33,8 @@ class LeageTableTestCase(unittest.TestCase):
 
     def test_get_sorted_points_table_win_loss(self):
         expected_result = [
-            {'Team_B': 3},
-            {'Team_A': 0}
+            ('Team_B', 3),
+            ('Team_A', 0)
         ]
         self.table.add_result({'Team_A': 0, 'Team_B': 4})
         res = self.table.get_current_standings()
@@ -42,20 +42,37 @@ class LeageTableTestCase(unittest.TestCase):
 
     def test_get_sorted_points_table_draw(self):
         expected_result = [
-            {'Team_A': 1},
-            {'Team_B': 1}
+            ('Team_A', 1),
+            ('Team_B', 1)
         ]
         self.table.add_result({'Team_A': 0, 'Team_B': 0})
         res = self.table.get_current_standings()
         self.assertListEqual(res, expected_result)
 
+    def test_get_sorted_points_team_name_sorting(self):
+        expected_result = [
+            ('Team_A', 1),
+            ('Team_B', 1),
+            ('Team_C', 1),
+            ('Team_D', 1),
+        ]
+        input_data = {
+            'Team_D': 1,
+            'Team_B': 1,
+            'Team_C': 1,
+            'Team_A': 1
+        }
+
+        res = self.table._get_sorted_points_table(input_data)
+        self.assertListEqual(res, expected_result)
+
     def test_get_sorted_points_table_example(self):
         expected_result = [
-            {'Tarantulas': 6},
-            {'Lions': 5},
-            {'FC Awesome': 1},
-            {'Snakes': 1},
-            {'Grouches': 0},
+            ('Tarantulas', 6),
+            ('Lions', 5),
+            ('FC Awesome', 1),
+            ('Snakes', 1),
+            ('Grouches', 0),
         ]
         self.table.add_result({'Lions': 3, 'Snakes': 3})
         self.table.add_result({'Tarantulas': 1, 'FC Awesome': 0})

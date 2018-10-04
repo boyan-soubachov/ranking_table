@@ -1,5 +1,4 @@
-from typing import Dict, List
-from functools import cmp_to_key
+from typing import Dict, List, Tuple
 
 
 class LeagueTable(object):
@@ -42,9 +41,11 @@ class LeagueTable(object):
             }
 
     def get_current_standings(self) -> List[Dict]:  # Can do an OrderedDict here but overkill
+        return self._get_sorted_points_table(self.points_table)
+
+    def _get_sorted_points_table(self, points_table: Dict) -> List[Tuple]:
         sorted_points_table = sorted(
-            self.points_table.items(),
+            points_table.items(),
             key=lambda row: (-row[1], row[0])
         )
-        res = [{row[0]:row[1]} for row in sorted_points_table]
-        return res
+        return sorted_points_table

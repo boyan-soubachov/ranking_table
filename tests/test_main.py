@@ -2,6 +2,7 @@ import os
 import unittest
 
 from ranking_table import main
+from ranking_table.league_table import LeagueTable
 
 
 class MainTestCase(unittest.TestCase):
@@ -71,3 +72,49 @@ class MainTestCase(unittest.TestCase):
     def test_raw_input_data_formatting_invalid_score_non_numeric(self):
         with self.assertRaises(ValueError):
             main._get_individual_score('Snakes abc')
+
+    def test_formatted_table_simple(self):
+        table = LeagueTable()
+        table.add_result({'Team A': 4, 'Team B': 0})
+        table.add_result({'Team A': 4, 'Team C': 2})
+        table.add_result({'Team B': 4, 'Team C': 4})
+
+        res = main._get_formatted_league_table_results(table)
+        expected_result = [
+            '1. Team A, 6 pts',
+            '2. Team B, 1 pt',
+            '2. Team C, 1 pt'
+        ]
+        self.assertListEqual(res, expected_result)
+
+    def test_formatted_table_plurals(self):
+        table = LeagueTable()
+        table.add_result({'Team A': 4, 'Team B': 0})
+        table.add_result({'Team A': 4, 'Team C': 4})
+
+        res = main._get_formatted_league_table_results(table)
+        expected_result = [
+            '1. Team A, 4 pts',
+            '2. Team C, 1 pt',
+            '3. Team B, 0 pts'
+        ]
+        self.assertListEqual(res, expected_result)
+
+    def test_formatted_table_example(self):
+        table = LeagueTable()
+        table.add_result({'Lions': 3, 'Snakes': 3})
+        table.add_result({'Tarantulas': 1, 'FC Awesome': 0})
+        table.add_result({'Lions': 1, 'FC Awesome': 1})
+        table.add_result({'Tarantulas': 3, 'Snakes': 1})
+        table.add_result({'Lions': 4, 'Grouches': 0})
+
+        expected_result = [
+            '1. Tarantulas, 6 pts',
+            '2. Lions, 5 pts',
+            '3. FC Awesome, 1 pt',
+            '3. Snakes, 1 pt',
+            '5. Grouches, 0 pts'
+        ]
+        res = main._get_formatted_league_table_results(table)
+        self.assertListEqual(res, expected_result)
+
