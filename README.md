@@ -42,5 +42,3 @@ To run tests:
 # Credits
 
 Developed and copyright by Boyan Soubachov (boyanvs@gmail.com), 4 October 2018.
-
-
