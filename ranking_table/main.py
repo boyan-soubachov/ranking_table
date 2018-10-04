@@ -45,7 +45,7 @@ def _get_input_from_stdin() -> List[Dict]:
     return inp_data
 
 
-def _convert_raw_input_to_dict(raw_input: str) -> List[Dict]:
+def _convert_raw_input_to_dict(raw_input: str) -> Dict:
     # Could go with regex for this but it may be overkill, keeping it MVP for now.
     res = {}
     pairs = raw_input.split(',')

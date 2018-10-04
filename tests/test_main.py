@@ -71,4 +71,3 @@ class MainTestCase(unittest.TestCase):
     def test_raw_input_data_formatting_invalid_score_non_numeric(self):
         with self.assertRaises(ValueError):
             main._get_individual_score('Snakes abc')
-
