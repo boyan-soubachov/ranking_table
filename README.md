@@ -30,7 +30,7 @@ Just run the program by entering `ranking_table` with no options in console. Fol
 
 Simply specify the `--file {path_to_data_file}` option with an absolute path to your input data file.
 
-_NOTE:_ The data input file should be text-based in the format of: `[Team1 name, no spaces] [score], [Team2 name, no spaces] [score]`
+_NOTE:_ The data input file should be text-based in the format of: `[Team1 name] [score], [Team2 name] [score]`
 
 # Tests
 
