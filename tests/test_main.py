@@ -103,4 +103,3 @@ class MainTestCase(unittest.TestCase):
         ]
         res = main._get_formatted_league_table_results(table)
         self.assertListEqual(res, expected_result)
-

@@ -1,6 +1,6 @@
-# About
+# League Ranking Table Calculator
 
-This is a simple tool to calculate and display a football ranking table given results.
+This is a simple tool to calculate and display a football league ranking table given results.
 
 # Requirements
 
@@ -39,6 +39,13 @@ To run tests:
 1. Install the testing requirements: `pip install -e ".[testing]"`
 1. Run the test suite: `pytest tests/`
 
+# Future work
+
+While this is a light-weight, MVP-esque solution. There are many ways it can be improved, these include:
+* Automated continuous integration & development with some tool such as Travis; this will require all tests to pass before code may be merged to master
+* Some refactoring i.t.o. a more OO approach if data gets more complicated, e.g. a GameResult object instead of throwing around lists of tuples.
+* Main.py starting to look a bit long, some of the logic may be grouped into a separate file & class (such as Presentation).
+
 # Credits
 
-Developed and copyright by Boyan Soubachov (boyanvs@gmail.com), 4 October 2018.
+Developed by Boyan Soubachov (boyanvs@gmail.com), 4 October 2018.
